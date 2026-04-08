@@ -1,8 +1,8 @@
 import os
-
-
 from fastapi import FastAPI
 from app.routes import health, call
+
+PORT = int(os.environ.get("PORT", 8000))
 
 app = FastAPI()
 
@@ -12,10 +12,4 @@ app.include_router(call.router)
 @app.get("/")
 def home():
     return {"message": "cobalt-brain is online"}
-
-    import os
-PORT = int(os.environ.get("PORT", 8000))
-
-
-
 
