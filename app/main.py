@@ -10,5 +10,9 @@ app.include_router(call.router)
 def home():
     return {"message": "cobalt-brain is online"}
 
+    import os
+PORT = int(os.environ.get("PORT", 8000"))
+
+
 
 
