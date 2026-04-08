@@ -11,7 +11,7 @@ def home():
     return {"message": "cobalt-brain is online"}
 
     import os
-PORT = int(os.environ.get("PORT", 8000"))
+PORT = int(os.environ.get("PORT", 8000))
 
 
 
