@@ -1,15 +1,14 @@
-import os
 from fastapi import FastAPI
-from app.routes import health, call
-
-PORT = int(os.environ.get("PORT", 8000))
+from app.routes.call import router as call_router
 
 app = FastAPI()
 
-app.include_router(health.router)
-app.include_router(call.router)
-
+# Root route for sanity check
 @app.get("/")
-def home():
-    return {"message": "cobalt-brain is online"}
+async def home():
+    return {"status": "ok", "message": "cobalt-brain API is running"}
+
+# Include the /call route from call.py
+app.include_router(call_router)
+
 
