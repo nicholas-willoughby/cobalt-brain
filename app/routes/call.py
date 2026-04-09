@@ -1,11 +1,21 @@
-from fastapi import APIRouter
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
 
-router = APIRouter(prefix="/call")
+app = FastAPI()
 
-@router.post("/")
-def start_call(phone_number: str):
-    return {
-        "status": "initiated",
-        "phone_number": phone_number,
-        "message": "Call request received. AI caller will dial shortly."
+@app.post("/call")
+async def inbound_call(request: Request):
+    print("Incoming call webhook")
+
+    swml = {
+        "actions": [
+            {
+                "say": {
+                    "text": "Your FastAPI webhook is now connected."
+                }
+            }
+        ]
     }
+
+    return JSONResponse(content=swml)
+
