@@ -20,5 +20,3 @@ async def handle_call_post():
     </Response>
     """
     return Response(content=xml, media_type="application/xml")
-
-
