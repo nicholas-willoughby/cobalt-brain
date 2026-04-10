@@ -1,4 +1,7 @@
+from fastapi import APIRouter
 from fastapi.responses import Response
+
+router = APIRouter()
 
 @router.post("/call")
 async def handle_call():
@@ -8,4 +11,5 @@ async def handle_call():
     </Response>
     """
     return Response(content=xml, media_type="application/xml")
+
 
