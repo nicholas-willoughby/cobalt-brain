@@ -1,13 +1,11 @@
-from fastapi import APIRouter, Request
-from fastapi.responses import JSONResponse
-
-router = APIRouter()
+from fastapi.responses import Response
 
 @router.post("/call")
-async def inbound_call(request: Request):
-    swml = {
-        "actions": [
-            {"say": {"text": "Your FastAPI webhook is now connected."}}
-        ]
-    }
-    return JSONResponse(content=swml)
+async def handle_call():
+    xml = """
+    <Response>
+        <Say>Your FastAPI webhook is now connected.</Say>
+    </Response>
+    """
+    return Response(content=xml, media_type="application/xml")
+
